@@ -2,9 +2,9 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const fs = require("fs");
 
-body = fs.readFileSync("html1.html");
+let body = fs.readFileSync("html1.html");
 let dom = new JSDOM(body);
-body2 = fs.readFileSync("html3.html");
+let body2 = fs.readFileSync("html3.html");
 let dom2 = new JSDOM(body2);
 
 //-------------------------- table 1 ---------------------------------------
@@ -14,7 +14,7 @@ let data1 = [];
 let rows1 = consistTbl.rows;
 for (let i = 2; i < rows1.length - 1; i++) {
 
-  let name = rows1[i].cells[0].textContent.match(/[()-,a-zA-Z\s]/g).join("").replace(/oil/, "");
+  let name = rows1[i].cells[0].textContent.match(/[()-,a-zA-Z/s]/g).join("").replace(/oil/, "");
   let sF = Number(rows1[i].cells[1].textContent.match(/^\d+/g))
   let mUF = Number(rows1[i].cells[2].textContent.match(/^\d+/g))
   
