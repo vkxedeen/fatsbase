@@ -5,8 +5,6 @@ let arr2 = JSON.parse(fs.readFileSync("tbl2.json"));
 
 let res = merge(arr1, arr2);
 
-console.log(res.length);
-
 function compare(obj1, arr) {
   //obj1 – приоритет. arr – второй массив
   let obj = Object.assign({}, obj1);
