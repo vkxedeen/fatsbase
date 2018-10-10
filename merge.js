@@ -3,7 +3,18 @@ const fs = require("fs");
 let arr1 = JSON.parse(fs.readFileSync("tbl1.json"));
 let arr2 = JSON.parse(fs.readFileSync("tbl2.json"));
 
-let res = merge(arr1, arr2);
+let promise = new Promise(resolve => {
+  let result = JSON.stringify(merge(arr1, arr2));
+  resolve(result);
+  console.log(result);
+});
+
+promise.then(result => {
+  fs.writeFile("./data.json", result, err => {
+    if (err) throw err;
+    console.log("data saved!");
+  });
+});
 
 function compare(obj1, arr) {
   //obj1 – приоритет. arr – второй массив
