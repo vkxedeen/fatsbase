@@ -15,31 +15,23 @@ let rows1 = consistTbl.rows;
 for (let i = 2; i < rows1.length - 1; i++) {
 
   let name = rows1[i].cells[0].textContent.match(/[()-,a-zA-Z/s]/g).join("").replace(/oil/, "");
-  let sF = Number(rows1[i].cells[1].textContent.match(/^\d+/g))
-  let mUF = Number(rows1[i].cells[2].textContent.match(/^\d+/g))
+  let sF = Number(rows1[i].cells[1].textContent.match(/^\d+/g) || "0")
+  let mUF = Number(rows1[i].cells[2].textContent.match(/^\d+/g) || "0")
   
-  let omega6 = (rows1[i].cells[5].textContent.match(/[\d.]/g) == null) ?
-  0 : Number(rows1[i].cells[5].textContent.match(/[\d.]/g).join(""))
-
-  let omega3 = (rows1[i].cells[4].textContent.match(/[\d.]/g) == null) ?
-  0 : Number(rows1[i].cells[4].textContent.match(/[\d.]/g).join(""))
+  let omega6 = Number(rows1[i].cells[5].textContent.match(/[\d.]+/) || "0")
+  let omega3 = Number(rows1[i].cells[4].textContent.match(/[\d.]+/) || "0")
  
-  let fireP = Number(rows1[i].cells[6].textContent.match(/^\d+/g))
+  let fireP = Number(rows1[i].cells[6].textContent.match(/^\d+/g) || "0")
 
-  let row1 = {
-    "name": name,
-    "sF": Math.round(sF * 100) / 100,
-    "mUF": Math.round(mUF * 100) / 100,
-    "omega6": omega6,
-    "omega3": omega3,
-    "fireP": fireP
-    };
+  let row1 = { name, omega6, omega3, fireP }
+    row1.sF = Math.round(sF * 100) / 100,
+    row1.mUF = Math.round(mUF * 100) / 100,
 
   data1.push(row1);
 }
 dataJS1 = JSON.stringify(data1);
 
-fs.writeFile("./tbl1.json", dataJS1, err => {
+fs.writeFileSync("./tbl1.json", dataJS1, err => {
   if (err) throw err;
   console.log("table 1 saved!");
 });
@@ -52,26 +44,19 @@ let rows2 = consistTbl2.rows;
 for (let i = 3; i < rows2.length - 4; i++) {
 
   let name = rows2[i].cells[0].textContent.match(/[-,a-zA-Z\s\/]/g).join("");
-  let sF = Number(rows2[i].cells[2].textContent);
-  let mUF = Number(rows2[i].cells[3].textContent);
-  let omega6 = Number(rows2[i].cells[7].textContent);
-  let omega3 = Number(rows2[i].cells[6].textContent);
-  let fireP = Number(rows2[i].cells[8].textContent.match(/\d+/)[0]);
+  let sF = Number(rows2[i].cells[2].textContent || "0");
+  let mUF = Number(rows2[i].cells[3].textContent || "0");
+  let omega6 = Number(rows2[i].cells[7].textContent || "0");
+  let omega3 = Number(rows2[i].cells[6].textContent || "0");
+  let fireP = Number(rows2[i].cells[8].textContent.match(/\d+/)[0] || "0");
 
-  let row2 = {
-    "name": name,
-    "sF": sF,
-    "mUF": mUF,
-    "omega6": omega6,
-    "omega3": omega3,
-    "fireP": fireP
-    };
-
+  let row2 = { name, sF, mUF, omega6, omega3, fireP } 
+   
   data2.push(row2);
 }
 dataJS2 = JSON.stringify(data2);
 
-fs.writeFile("./tbl2.json", dataJS2, err => {
+fs.writeFileSync("./tbl2.json", dataJS2, err => {
   if (err) throw err;
   console.log("table 2 saved!");
 });
