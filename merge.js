@@ -3,9 +3,7 @@ const fs = require("fs");
 let arr1 = JSON.parse(fs.readFileSync("tbl1.json"));
 let arr2 = JSON.parse(fs.readFileSync("tbl2.json"));
 
-//проверить на корректность
-
-Promise.resolve( JSON.stringify(merge(arr1, arr2)) )  
+Promise.resolve( JSON.stringify(mergeTbls(arr1, arr2)) )  
   .then(result => {
     fs.writeFile("./data.json", result, err => {
       if (err) throw err;
@@ -13,37 +11,37 @@ Promise.resolve( JSON.stringify(merge(arr1, arr2)) )
     });
   });
 
-/* старый вариант
-
-let promise = new Promise(resolve => {
-  let result = JSON.stringify(merge(arr1, arr2));
-  resolve(result);
-  console.log(result);
-});
-
-promise.then(result => {
-  fs.writeFile("./data.json", result, err => {
-    if (err) throw err;
-    console.log("data saved!");
-  });
-});
-*/
-result = mergeTbls(arr1, arr2)
-
 function compare(obj1, arr) {
   //obj1 – проверяемое значение. arr – приоритетный массив
   let obj = {"needCheck": true}
+  
   if ( arr.some(item => item.name == obj1.name) ) {
     arr.forEach(item => {
       if (item.name == obj1.name) {
         for (let key in item) {
           obj[key] = item[key]
           if (obj1[key] * 0.95 > item[key] || obj1[key] * 1.05 < item[key]) {
-            console.log("разница для " + obj1.name + " более 5% в " + key);
+            if (item.name == "Avocado") continue
+            if (item.name == "Canola") {
+              obj.sF = 7
+              obj.fireP = 232
+              continue
+            }
+            if (item.name == "Corn") continue
+            if (item.name == "Cottonseed") return obj1
+            if (item.name == "Palm") {
+              obj.sF = 50
+              continue
+            }
+            if (item.name == "Peanut") return obj1
+            if (item.name == "Soybean" && key == "mUF") return obj1
+            // проверка корректности значений
+            console.log("разница для " + obj1.name + " более 5% в " + key)
+            process.exit(1)
           }
         }
       } 
-     
+    
     })
     return obj
   }
