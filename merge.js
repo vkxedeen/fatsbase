@@ -3,6 +3,18 @@ const fs = require("fs");
 let arr1 = JSON.parse(fs.readFileSync("tbl1.json"));
 let arr2 = JSON.parse(fs.readFileSync("tbl2.json"));
 
+//проверить на корректность
+
+Promise.resolve( JSON.stringify(merge(arr1, arr2)) )  
+  .then(result => {
+    fs.writeFile("./data.json", result, err => {
+      if (err) throw err;
+      console.log("data saved!");
+    });
+  });
+
+/* старый вариант
+
 let promise = new Promise(resolve => {
   let result = JSON.stringify(merge(arr1, arr2));
   resolve(result);
@@ -15,8 +27,8 @@ promise.then(result => {
     console.log("data saved!");
   });
 });
-
-result = merge (arr1, arr2)
+*/
+result = mergeTbls(arr1, arr2)
 
 function compare(obj1, arr) {
   //obj1 – проверяемое значение. arr – приоритетный массив
@@ -38,7 +50,7 @@ function compare(obj1, arr) {
   else return obj1 
 }
 
-function merge(arr1, arr2) {
+function mergeTbls(arr1, arr2) {
   let arr = arr1.slice();
 
   for (let i = 0; i < arr2.length; i++) {
