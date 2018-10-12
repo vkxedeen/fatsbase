@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "highcharts": "^6.1.4",
     "htmlparser2": "^3.9.2",
     "jsdom": "^12.1.0",
     "needle": "^2.2.4",
