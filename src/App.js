@@ -15,7 +15,6 @@ class App extends React.Component {
         return response.json()
       })
       .then(function(result) {
-        debugger;
         self.setState({ data: result })
       });
   }
