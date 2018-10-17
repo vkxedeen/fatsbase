@@ -1,5 +1,5 @@
 
-const needle = requre('needle')
+const needle = require('needle')
 const fs = require('fs')
 
 const URL = 'https://en.wikipedia.org/wiki/Cooking_oil'

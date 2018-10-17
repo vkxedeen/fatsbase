@@ -4,20 +4,20 @@
   "private": true,
   "dependencies": {
     "highcharts": "^6.1.4",
-    "htmlparser2": "^3.9.2",
     "jsdom": "^12.1.0",
     "needle": "^2.2.4",
-    "node-html-parser": "^1.1.10",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.4",
     "request": "^2.88.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node load.js && node select.js && merge.js && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "load": "node load.js",
+    "clean": "node select.js"
   },
   "eslintConfig": {
     "extends": "react-app"
