@@ -2,9 +2,9 @@ const jsdom = require('jsdom')
 const { JSDOM } = jsdom
 const fs = require('fs')
 
-let body = fs.readFileSync("html1.html")
+let body = fs.readFileSync("temp/html1.html")
 let dom = new JSDOM(body)
-let body2 = fs.readFileSync("html3.html")
+let body2 = fs.readFileSync("temp/html3.html")
 let dom2 = new JSDOM(body2)
 
 //-------------------------- table 1 ---------------------------------------
@@ -31,7 +31,7 @@ for (let i = 2; i < rows1.length - 1; i++) {
 }
 dataJS1 = JSON.stringify(data1)
 
-fs.writeFileSync("./tbl1.json", dataJS1, err => {
+fs.writeFileSync("./temp/tbl1.json", dataJS1, err => {
   if (err) throw err;
   console.log("table 1 saved!")
 });
@@ -56,7 +56,7 @@ for (let i = 3; i < rows2.length - 4; i++) {
 }
 dataJS2 = JSON.stringify(data2)
 
-fs.writeFileSync("./tbl2.json", dataJS2, err => {
+fs.writeFileSync("./temp/tbl2.json", dataJS2, err => {
   if (err) throw err
   console.log("table 2 saved!")
 });

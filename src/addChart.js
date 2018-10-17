@@ -1,7 +1,7 @@
 import Highcharts from "highcharts"
 
-function lines(place, data) {
-  Highcharts.chart(place, {
+function addChart(node, data) {
+  Highcharts.chart(node, {
     chart: {
       height: 60,
       type: "bar",
@@ -72,4 +72,4 @@ function lines(place, data) {
   });
 }
 
-export { lines }
+export { addChart }

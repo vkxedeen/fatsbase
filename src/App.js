@@ -1,5 +1,5 @@
 import React from "react"
-import Graph from "./Graph"
+import Diagram from "./Diagram"
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class App extends React.Component {
     if (this.state.data) {
       return (
         <div>
-          <Graph data={this.state.data} />
+          <Diagram data={this.state.data} />
         </div>
       );
     } else return null

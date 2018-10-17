@@ -1,7 +1,7 @@
 const fs = require('fs')
 
-let arr1 = JSON.parse(fs.readFileSync("tbl1.json"))
-let arr2 = JSON.parse(fs.readFileSync("tbl2.json"))
+let arr1 = JSON.parse(fs.readFileSync("temp/tbl1.json"))
+let arr2 = JSON.parse(fs.readFileSync("temp/tbl2.json"))
 
 Promise.resolve(JSON.stringify(mergeTbls(arr1, arr2))).then(result => {
   fs.writeFile("./public/data.json", result, err => {
