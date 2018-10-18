@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "/fatsbase/static/js/1.4785994f.chunk.js"
   },
   {
-    "revision": "672fadfe46fa0c9a83494f13d773b1da",
+    "revision": "3abb2ef8f0d72e2e7ac3e83996a898e3",
     "url": "/fatsbase/index.html"
   }
 ];
