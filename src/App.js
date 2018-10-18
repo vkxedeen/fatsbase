@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Diagram from "./Diagram";
-import Test from "./Test";
+import ElemInfo from "./ElemInfo";
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class App extends React.Component {
         <BrowserRouter>
           <div>
             <Switch>
-              <Route path="/test/:name" exact component={Test} />
+              <Route path="/fat/:name" exact component={ElemInfo} />
               <Diagram data={this.state.data} />
             </Switch>
           </div>
