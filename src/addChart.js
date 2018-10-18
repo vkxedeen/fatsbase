@@ -14,7 +14,8 @@ function addChart(node, data) {
       outside: true,
       followPointer: true,
       headerFormat: "<b>" + data.name + "</b>",
-      pointFormat: "<br/>{series.name}: <b>{point.y}%</b><br/>"
+      pointFormat: "<br/>{series.name}: <b>{point.y}%</b><br/>",
+      hideDelay: 0
     },
     xAxis: {
       tickPositions: [],

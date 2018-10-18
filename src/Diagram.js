@@ -1,5 +1,6 @@
 import React from "react";
 import { addChart } from "./addChart";
+import { Link } from 'react-router-dom';
 
 class Diagram extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Diagram extends React.Component {
         <div id="container" style={{ width: 400 + "px" }}>
           {this.props.data.map((item, i) => (
             <div>
-              <span>{item.name}</span>
+              <span><Link to={`/test/${item.name}`}>{item.name}</Link></span>
               <div id={i} key={i} ref={node => this.nodes.push(node)}></div>
             </div>
           ))}
