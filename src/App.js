@@ -12,7 +12,7 @@ class App extends React.Component {
 
   componentDidMount() {
     let self = this;
-    fetch("/data.json")
+    fetch("/fatsbase/data.json")
       .then(function(response) {
         return response.json();
       })
