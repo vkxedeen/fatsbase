@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Test(props) {
+function ElemInfo(props) {
   return (
     <div>
       {props.match.params.name} /
@@ -12,4 +12,4 @@ function Test(props) {
   );
 }
 
-export default Test;
+export default ElemInfo;
