@@ -12,7 +12,6 @@ class Diagram extends React.Component {
 
   componentDidMount() {
     for (let i = 0; i < this.props.data.length; i++) {
-      debugger;
       addChart(this.nodes[i], this.props.data[i]);
     }
   }
