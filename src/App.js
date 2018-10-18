@@ -28,7 +28,7 @@ class App extends React.Component {
         <BrowserRouter>
           <div>
             <Switch>
-              <Route path="./fat/:name" component={ElemInfo} />
+              <Route path="/test/:name" component={ElemInfo} />
               <Diagram data={this.state.data} />
             </Switch>
           </div>
