@@ -25,7 +25,7 @@ class Diagram extends React.Component {
         <div id="container" style={{ width: 400 + "px" }}>
           {this.props.data.map((item, i) => (
             <div>
-              <span><Link to={`/test/${item.name}`}>{item.name}</Link></span>
+              <span><Link to={`/${item.name}`}>{item.name}</Link></span>
               <div id={i} key={i} ref={node => this.nodes.push(node)}></div>
             </div>
           ))}

@@ -13,7 +13,7 @@ function addChart(node, data) {
     tooltip: {
       outside: true,
       followPointer: true,
-      headerFormat: "<b>" + data.name + "</b>",
+      headerFormat: null,
       pointFormat: "<br/>{series.name}: <b>{point.y}%</b><br/>",
       hideDelay: 0
     },

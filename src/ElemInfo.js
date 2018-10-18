@@ -6,7 +6,7 @@ function ElemInfo(props) {
     <div>
       {props.match.params.name} /
       <Link to="/">
-        <span>назад</span>
+        <span>Back</span>
       </Link>
     </div>
   );

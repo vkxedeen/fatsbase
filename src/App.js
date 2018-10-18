@@ -12,7 +12,7 @@ class App extends React.Component {
 
   componentDidMount() {
     let self = this;
-    fetch("/fatsbase/data.json")
+    fetch("./data.json")
       .then(function(response) {
         return response.json();
       })
@@ -28,7 +28,7 @@ class App extends React.Component {
         <BrowserRouter>
           <div>
             <Switch>
-              <Route path="/test/:name" component={ElemInfo} />
+              <Route path="/:name" component={ElemInfo} />
               <Diagram data={this.state.data} />
             </Switch>
           </div>
