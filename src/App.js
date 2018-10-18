@@ -18,7 +18,8 @@ class App extends React.Component {
       })
       .then(function(result) {
         self.setState({ data: result });
-      });
+      })
+      .catch(error => console.error(error));
   }
 
   render() {
