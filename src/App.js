@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import Diagram from "./Diagram";
 import ElemInfo from "./ElemInfo";
 
@@ -25,14 +25,14 @@ class App extends React.Component {
   render() {
     if (this.state.data) {
       return (
-        <BrowserRouter>
+        <HashRouter basename="/fatsbase">
           <div>
             <Switch>
               <Route path="/:name" component={ElemInfo} />
               <Diagram data={this.state.data} />
             </Switch>
           </div>
-        </BrowserRouter>
+        </HashRouter>
       );
     } else return null;
   }

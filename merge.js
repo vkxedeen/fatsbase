@@ -64,13 +64,13 @@ function mergeTbls(arr1, arr2) {
     let sum = item.sF + item.mUF + item.omega3 + item.omega6
     if ( sum > 100) {
       if (item.name == "Cottonseed") {
-        item.omega3 = 0.2
+        item.omega3 = 0.1
         item.omega6 = 52.2
         item.sF = 29.4
-        item.omega6 = 23.3
+        item.mUF = 18.3
         return item
       }
-      if (item.name == "Margarine(hard)") {
+      if (item.name == "Margarine (hard)") {
           item.omega3 = 0
           item.omega6 = 9
           item.sF = 32.7

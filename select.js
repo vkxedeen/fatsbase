@@ -14,7 +14,7 @@ let data1 = []
 let rows1 = consistTbl.rows
 for (let i = 2; i < rows1.length - 1; i++) {
 
-  let name = rows1[i].cells[0].textContent.match(/[()-,a-zA-Z/s]/g).join("").replace(/oil/, "")
+  let name = rows1[i].cells[0].textContent.match(/[()-,a-zA-Z\t]/g).join("").replace("(", " (").replace(/oil/, "")
   let sF = Number(rows1[i].cells[1].textContent.match(/^\d+/g) || "0")
   let mUF = Number(rows1[i].cells[2].textContent.match(/^\d+/g) || "0")
   
@@ -43,7 +43,7 @@ let data2 = []
 let rows2 = consistTbl2.rows
 for (let i = 3; i < rows2.length - 4; i++) {
 
-  let name = rows2[i].cells[0].textContent.match(/[-,a-zA-Z\s\/]/g).join("")
+  let name = rows2[i].cells[0].textContent.match(/[-,a-zA-Z\t\/]/g).join("")
   let sF = Number(rows2[i].cells[2].textContent || "0")
   let mUF = Number(rows2[i].cells[3].textContent || "0")
   let omega6 = Number(rows2[i].cells[7].textContent || "0")
