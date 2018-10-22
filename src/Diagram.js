@@ -9,24 +9,24 @@ class Diagram extends React.Component {
     this.state = {};
     this.nodes = [];
   }
-  /*componentDidUpdate() {
-    debugger
+  componentDidUpdate() {
     for (let i = 0; i < this.props.newData.length; i++) {
-      addChart(this.nodes[i], this.props.newData[i]);
+      addChart(this.nodes[i], this.props.newData[i]); //тут nodes [0] = null, искомый узел - nodes[36].
     }
   }
-  */
+  
 
   componentDidMount() {
     for (let i = 0; i < this.props.data.length; i++) {
       addChart(this.nodes[i], this.props.data[i]);
     }
+    this.nodes = []; //nodes = [] !
   }
 
-  componentWillUnmount() {
+/*  componentWillUnmount() {
     this.nodes = [];
   }
-
+*/
   /*shouldComponentUpdate() {
     if (this.props.newData != this.props.data) return true
     return false;
