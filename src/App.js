@@ -1,40 +1,46 @@
 import React from "react";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Diagram from "./Diagram";
 import ElemInfo from "./ElemInfo";
+import NotFound from "./NotFound";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-    newData: null}
+      data: null,
+      markedData: null
+    }
   }
 
   componentDidMount() {
-    debugger
     let self = this;
     fetch("./data.json")
       .then(function(response) {
         return response.json();
       })
       .then(function(result) {
-        self.setState({ data: result });
+        self.setState({ data: result.map(item => {
+          item.isSelect = true
+          return item 
+        } )});
       })
       .catch(error => console.log(error.message));
   }
 
   findByPattern = (event) => {
-    let obj = this.state.data.slice()
     if (event.target.value && event.keyCode === 13) {
-
       let regex = new RegExp(event.target.value)
-      debugger
-      let filtered = obj.filter(item =>  regex.test(item.name) == true )
-      this.setState({newData: filtered
-        })
-      console.log(this.state.newData)  
-
+      let filtered = this.state.data.map (item => {
+        if(regex.test(item.name) == true ) {
+          item.isSelect = true;
+        } else {
+          item.isSelect = false;
+        }
+      return item
+      })
+      this.setState({ data: filtered})
     }
   }
 
@@ -42,20 +48,20 @@ class App extends React.Component {
     if (this.state.data) {
       return (
         <div>
-        <p><b>Find:</b><br/>
-        <input type="text" size="40" value={this.state.inputValue} onKeyUp={(event) => this.findByPattern(event)}/>
-       </p>
-        <HashRouter basename="/fatsbase">
-          <div>
-            <Switch>
-              <Route path="/:name" component={ElemInfo} />
-              <Diagram data={this.state.data} newData={this.state.newData}/>
-            </Switch>
-          </div>
-        </HashRouter>
+          <BrowserRouter >
+            <div>
+              <Switch>
+                <Route path="/" exact render={props => <Diagram {...props} data={this.state.data} findByPattern={this.findByPattern}/>}/>  
+                <Route path="/:name" render={props => <ElemInfo {...props} data={this.state.data}/>}/>
+                <Route path="*" component={NotFound}/>
+              </Switch>
+            </div>
+          </BrowserRouter>
         </div>
       );
-    } else return null;
+    } else {
+      return <div>Loading...</div>
+    }
   }
 }
 

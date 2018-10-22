@@ -6,48 +6,42 @@ class Diagram extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      inputValue: null
+    };
     this.nodes = [];
-  }
-  componentDidUpdate() {
-    for (let i = 0; i < this.props.newData.length; i++) {
-      addChart(this.nodes[i], this.props.newData[i]); //тут nodes [0] = null, искомый узел - nodes[36].
-    }
+    this.bars = []
   }
   
-
+  componentDidUpdate() {
+    for (let i = 0; i < this.bars.length; i++) {
+      addChart(this.nodes[i], this.bars[i]); // бардак в nodes
+    }
+  }
+ 
   componentDidMount() {
     for (let i = 0; i < this.props.data.length; i++) {
       addChart(this.nodes[i], this.props.data[i]);
     }
-    this.nodes = []; //nodes = [] !
   }
-
-/*  componentWillUnmount() {
-    this.nodes = [];
-  }
-*/
-  /*shouldComponentUpdate() {
-    if (this.props.newData != this.props.data) return true
-    return false;
-  }
-  */
 
   render() {
     if (this.props.data) {
-      let bars = this.props.newData || this.props.data;
+      this.bars = this.props.data
+        .filter(item => item.isSelect == true)
+        .map((item, i) => (
+          <div key={i}>  
+            <Link to={`/${item.name}`}>{item.name}</Link>
+            <div id={i}  ref={node => this.nodes.push(node)} />
+          </div> 
+        ))
+        
       return (
-        <div>
-          <div id="container" style={{ width: 400 + "px" }}>
-            {bars.map((item, i) => (
-              <div>
-                <span>
-                  <Link to={`/${item.name}`}>{item.name}</Link>
-                </span>
-                <div id={i} key={i} ref={node => this.nodes.push(node)} />
-              </div>
-            ))}
-          </div>
+        <div id="container" style={{ width: 400 + "px" }}>
+          <p><b>Find:</b><br/>
+            <input type="text" size="40" value={this.state.inputValue} onKeyUp={(event) => this.props.findByPattern(event)}/>
+          </p>
+          {this.bars}
         </div>
       );
     } else {
