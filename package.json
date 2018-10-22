@@ -2,7 +2,7 @@
   "name": "fatsbase",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vkxedeen.github.io",
+  "homepage": "https://vkxedeen.github.io/fatsbase",
   "dependencies": {
     "gh-pages": "^2.0.1",
     "highcharts": "^6.1.4",
