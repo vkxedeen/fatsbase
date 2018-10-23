@@ -30,10 +30,10 @@ class App extends React.Component {
   }
 
   findByPattern = (event) => {
-    if (event.target.value && event.keyCode === 13) {
-      let regex = new RegExp(event.target.value)
+    if (event.target.value ) {
+      let regex = new RegExp(event.target.value.toLowerCase())
       let filtered = this.state.data.map (item => {
-        if(regex.test(item.name) == true ) {
+        if(regex.test(item.name.toLowerCase()) == true ) {
           item.isSelect = true;
         } else {
           item.isSelect = false;
@@ -41,6 +41,8 @@ class App extends React.Component {
       return item
       })
       this.setState({ data: filtered})
+    } else {
+      this.setState({ data: this.state.data})
     }
   }
 
