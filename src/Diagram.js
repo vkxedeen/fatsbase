@@ -14,6 +14,7 @@ class Diagram extends React.Component {
   }
   
   componentDidUpdate() {
+    console.log("nodes in cDU, newProps: ", this.nodes)
     for (let i = 0; i < this.bars.length; i++) {
       addChart(this.nodes[i], this.bars[i]); // бардак в nodes
     }
@@ -23,6 +24,8 @@ class Diagram extends React.Component {
     for (let i = 0; i < this.props.data.length; i++) {
       addChart(this.nodes[i], this.props.data[i]);
     }
+    this.nodes = [];
+    console.log("nodes = [] in cDM: ", this.nodes)
   }
 
   render() {
