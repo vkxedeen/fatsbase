@@ -3,6 +3,7 @@ import Highcharts from "highcharts";
 function addChart(node, data) {
   Highcharts.chart(node, {
     chart: {
+      animation: false,
       height: 60,
       type: "bar",
       title: null
@@ -34,6 +35,7 @@ function addChart(node, data) {
     },
     plotOptions: {
       series: {
+        animation: false,
         stacking: "normal",
         dataLabels: {
           enabled: true,
