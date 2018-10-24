@@ -1,5 +1,5 @@
 import React from "react";
-import { addChart } from "./addChart";
+import { addChart } from "../helpers";
 import { Link } from "react-router-dom";
 
 class Diagram extends React.Component {

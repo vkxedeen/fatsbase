@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 function ElemInfo(props) {
   return (
     <div>
-      {props.match.params.name} /
-      <Link to="/">
-        <span>Back</span>
-      </Link>
+      <Link to="/">Back </Link> <br/>
+      {props.match.params.name} <div>Smoke point is {props.match.params.fP}</div> 
+      
     </div>
   );
 }

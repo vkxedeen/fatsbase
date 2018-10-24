@@ -1,4 +1,4 @@
-import Highcharts from "highcharts"
+import Highcharts from "highcharts";
 
 function addChart(node, data) {
   Highcharts.chart(node, {
@@ -73,4 +73,10 @@ function addChart(node, data) {
   });
 }
 
-export { addChart }
+function checkCookingPossibility(elem) {
+  let maxTemp = elem.sF + elem.mUF >= 95 ? elem.fireP * 0.9 : elem.fireP * 0.75;
+  console.log("name: ", elem.name, "fP: ", elem.fireP, "maxT: ", maxTemp);
+  return maxTemp >= 200 ? true : false;
+}
+
+export { addChart, checkCookingPossibility };
