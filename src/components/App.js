@@ -11,7 +11,7 @@ class App extends React.Component {
     this.state = {
       data: null,
       markedData: null
-    }
+    };
   }
 
   componentDidMount() {
@@ -21,51 +21,65 @@ class App extends React.Component {
         return response.json();
       })
       .then(function(result) {
-        self.setState({ data: result.map(item => {
-          item.isSelect = true
-          return item 
-        } )});
+        self.setState({
+          data: result.map(item => {
+            item.isSelect = true;
+            return item;
+          })
+        });
       })
       .catch(error => console.log(error.message));
   }
 
-  findByPattern = (event) => {
-    if (event.target.value ) {
-      let regex = new RegExp(event.target.value.toLowerCase())
-      let filtered = this.state.data.map (item => {
-        if(regex.test(item.name.toLowerCase()) == true ) {
-          item.isSelect = true;
-        } else {
-          item.isSelect = false;
-        }
-      return item
-      })
-      this.setState({ data: filtered})
-    } else {
-      this.setState({ data: this.state.data})
-    }
-  }
+  findByPattern = event => {
+    let regex = new RegExp(event.target.value.toLowerCase());
+    let filtered = this.state.data.map(item => {
+      if (
+        regex.test(item.name.toLowerCase()) === true ||
+        event.target.value === ""
+      ) {
+        item.isSelect = true;
+      } else {
+        item.isSelect = false;
+      }
+      return item;
+    });
+    this.setState({ data: filtered });
+  };
 
   render() {
     if (this.state.data) {
       return (
         <div>
-          <BrowserRouter >
+          <BrowserRouter>
             <div>
               <Switch>
-                <Route path="/" exact render={props => <Wrapper {...props}
-                  data={this.state.data} 
-                  findByPattern={this.findByPattern}
-                  filtrByFrying={this.filtrByFrying}/>}/>  
-                <Route path="/:name" render={props => <ElemInfo {...props} data={this.state.data}/>}/>
-                <Route path="*" component={NotFound}/>
+                <Route
+                  path="/"
+                  exact
+                  render={props => (
+                    <Wrapper
+                      {...props}
+                      data={this.state.data}
+                      findByPattern={this.findByPattern}
+                      filtrByFrying={this.filtrByFrying}
+                    />
+                  )}
+                />
+                <Route
+                  path="/:name"
+                  render={props => (
+                    <ElemInfo {...props} data={this.state.data} />
+                  )}
+                />
+                <Route path="*" component={NotFound} />
               </Switch>
             </div>
           </BrowserRouter>
         </div>
       );
     } else {
-      return <div>Loading...</div>
+      return <div>Loading...</div>;
     }
   }
 }

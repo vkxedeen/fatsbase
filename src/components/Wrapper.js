@@ -47,13 +47,28 @@ class Wrapper extends React.Component {
   }
 
   makeList() {
+    function fltrByName(data) {
+      return data.filter(item => item.isSelect === true);
+    }
+
+    function fltrCook(data) {
+      return data.filter(item => checkCookingPossibility(item) === true);
+    }
+
+    function fltrVeg(data) {
+      return data.filter(item => item.isVegeterian === true);
+    }
+
     if (this.state.data) {
-      let bars = this.state.data.filter(item => item.isSelect == true);
-      if (this.state.fryCheck)
-        bars = bars.filter(item => checkCookingPossibility(item) === true);
-      return bars;
-    } else {
-      return false;
+      if (this.state.fryCheck && this.state.vegCheck) {
+        return fltrByName(fltrCook(fltrVeg(this.state.data)));
+      } else if (this.state.fryCheck) {
+        return fltrByName(fltrCook(this.state.data));
+      } else if (this.state.vegCheck) {
+        return fltrByName(fltrVeg(this.state.data));
+      } else {
+        return fltrByName(this.state.data);
+      }
     }
   }
 
@@ -66,6 +81,10 @@ class Wrapper extends React.Component {
 
   checkFrying() {
     this.setState({ fryCheck: !this.state.fryCheck });
+  }
+
+  checkVeg() {
+    this.setState({ vegCheck: !this.state.vegCheck });
   }
 
   render() {
@@ -110,7 +129,7 @@ class Wrapper extends React.Component {
               type="checkbox"
               id="vegeterian"
               checked={this.state.vegCheck}
-              onChange={() => this.sortByVegeterian()}
+              onChange={() => this.checkVeg()}
             />
             <label htmlFor="vegeterian">Vegeterian</label>
             <br />

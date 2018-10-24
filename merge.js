@@ -60,6 +60,11 @@ function mergeTbls(arr1, arr2) {
   arr = newArr.slice();
 
   return arr.map(item => {
+    if (/But/.test(item.name) == true) {
+      item.isVegeterian = false;
+    } else {
+      item.isVegeterian = true;
+    }
     let sum = item.sF + item.mUF + item.omega3 + item.omega6;
     if (sum > 100) {
       if (item.name == "Cottonseed") {
