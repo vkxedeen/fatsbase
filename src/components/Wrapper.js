@@ -1,6 +1,6 @@
 import React from "react";
-import { addChart, checkCookingPossibility } from "../helpers";
-import { Link } from "react-router-dom";
+import { checkCookingPossibility } from "../helpers";
+import Diagram from "./Diagram";
 
 class Wrapper extends React.Component {
   constructor(props) {
@@ -10,73 +10,54 @@ class Wrapper extends React.Component {
       data: this.props.data,
       inputValue: undefined,
       formValue: false,
-      radio: null,
+      sort: null,
       fryCheck: false,
-      vegCheck: false
+      vegCheck: false,
+      sortDirection: true
     };
     this.nodes = [];
   }
 
-  componentDidUpdate() {
-    let bars = this.makeList();
-    for (let i = 0; i < bars.length; i++) {
-      addChart(this.nodes[i], bars[i]);
+  applyFilters(data) {
+    if (data) {
+      let filterFn;
+      if (this.state.fryCheck && this.state.vegCheck) {
+        filterFn = item =>
+          item.isVegeterian === true &&
+          checkCookingPossibility(item) === true &&
+          item.isSelect === true;
+      } else if (this.state.fryCheck) {
+        filterFn = item =>
+          checkCookingPossibility(item) === true && item.isSelect === true;
+      } else if (this.state.vegCheck) {
+        filterFn = item => item.isVegeterian === true && item.isSelect === true;
+      } else {
+        filterFn = item => item.isSelect === true;
+      }
+      let res = data.filter(filterFn);
+      return res;
     }
   }
 
-  componentDidMount() {
-    for (let i = 0; i < this.state.data.length; i++) {
-      addChart(this.nodes[i], this.state.data[i]);
+  applySorts(str, data) {
+    if (!str) return data;
+    if (this.state.sortDirection) {
+      return data.sort(compare);
+    } else {
+      return data.sort(compare).reverse();
     }
-  }
-
-  sortByProp(str) {
-    debugger;
-    if (!str) return;
-    if (this.state.formValue)
-      this.setState(prevState => ({ data: prevState.data.sort(compare) }));
-    else
-      this.setState(prevState => ({
-        data: prevState.data.sort(compare).reverse()
-      }));
 
     function compare(a, b) {
       return a[str] - b[str];
     }
-    this.setState({ radio: str });
   }
 
-  makeList() {
-    function fltrByName(data) {
-      return data.filter(item => item.isSelect === true);
-    }
-
-    function fltrCook(data) {
-      return data.filter(item => checkCookingPossibility(item) === true);
-    }
-
-    function fltrVeg(data) {
-      return data.filter(item => item.isVegeterian === true);
-    }
-
-    if (this.state.data) {
-      if (this.state.fryCheck && this.state.vegCheck) {
-        return fltrByName(fltrCook(fltrVeg(this.state.data)));
-      } else if (this.state.fryCheck) {
-        return fltrByName(fltrCook(this.state.data));
-      } else if (this.state.vegCheck) {
-        return fltrByName(fltrVeg(this.state.data));
-      } else {
-        return fltrByName(this.state.data);
-      }
-    }
+  setSortProp(str) {
+    this.setState({ sort: str });
   }
 
   directionChange() {
-    this.setState(
-      { formValue: !this.state.formValue },
-      this.sortByProp(this.state.radio)
-    );
+    this.setState({ sortDirection: !this.state.sortDirection });
   }
 
   checkFrying() {
@@ -88,16 +69,15 @@ class Wrapper extends React.Component {
   }
 
   render() {
-    let bars = this.makeList();
+    debugger;
+    let bars = this.applySorts(
+      this.state.sort,
+      this.applyFilters(this.state.data)
+    );
     if (bars) {
-      bars = bars.map((item, i) => (
-        <div key={i}>
-          <Link to={`/${item.name}`}>{item.name}</Link>
-          <div id={i} ref={node => (this.nodes[i] = node)} />
-        </div>
-      ));
+      bars = bars.map((item, i) => <Diagram item={item} i={i} />);
       return (
-        <div id="container" style={{ width: 500 + "px" }}>
+        <div id="container">
           <p>
             <b>Find:</b>
             <br />
@@ -109,10 +89,9 @@ class Wrapper extends React.Component {
             />
           </p>
           <p>
-            {" "}
-            Упорядочить по{" "}
+            Упорядочить по
             <select
-              value={this.state.formValue}
+              value={this.state.sortDirection}
               onChange={() => this.directionChange()}
             >
               <option value={true}>Возрастанию</option>
@@ -141,7 +120,7 @@ class Wrapper extends React.Component {
               id="sf"
               name="sort"
               value="sF"
-              onChange={() => this.sortByProp("sF")}
+              onChange={() => this.setSortProp("sF")}
             />
             <label htmlFor="sF">Saturated fats</label>
             <input
@@ -149,7 +128,7 @@ class Wrapper extends React.Component {
               id="mUF"
               name="sort"
               value="mUF"
-              onChange={() => this.sortByProp("mUF")}
+              onChange={() => this.setSortProp("mUF")}
             />
             <label htmlFor="mUF">Monounsaturated fats</label>
             <input
@@ -157,7 +136,7 @@ class Wrapper extends React.Component {
               id="om3"
               name="sort"
               value="om3"
-              onChange={() => this.sortByProp("omega3")}
+              onChange={() => this.setSortProp("omega3")}
             />
             <label htmlFor="om3">Omega 3</label>
             <input
@@ -165,7 +144,7 @@ class Wrapper extends React.Component {
               id="om6"
               name="sort"
               value="om6"
-              onChange={() => this.sortByProp("omega6")}
+              onChange={() => this.setSortProp("omega6")}
             />
             <label htmlFor="om6">Omega 6</label>
           </p>

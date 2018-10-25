@@ -62,7 +62,6 @@ class App extends React.Component {
                       {...props}
                       data={this.state.data}
                       findByPattern={this.findByPattern}
-                      filtrByFrying={this.filtrByFrying}
                     />
                   )}
                 />

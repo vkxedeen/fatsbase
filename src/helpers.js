@@ -1,10 +1,12 @@
 import Highcharts from "highcharts";
 
 function addChart(node, data) {
+  debugger;
   Highcharts.chart(node, {
     chart: {
       animation: false,
       height: 60,
+      width: (data.sF + data.mUF + data.omega6 + data.omega3 + 2.5) * 5,
       type: "bar",
       title: null
     },
@@ -76,9 +78,13 @@ function addChart(node, data) {
 }
 
 function checkCookingPossibility(elem) {
-  let maxTemp = elem.sF + elem.mUF >= 95 ? elem.fireP * 0.9 : elem.fireP * 0.75;
-  console.log("name: ", elem.name, "fP: ", elem.fireP, "maxT: ", maxTemp);
+  let maxTemp = elem.sF + elem.mUF >= 95 ? elem.fireP : elem.fireP * 0.85;
+  console.log("name: ", elem.name, "fP: ", elem.fireP, maxTemp);
   return maxTemp >= 200 ? true : false;
 }
 
-export { addChart, checkCookingPossibility };
+// function compare(a, b) {
+//   return a - b;
+// }
+
+export { addChart, checkCookingPossibility /*, compare*/ };
