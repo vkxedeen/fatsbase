@@ -1,7 +1,6 @@
 import Highcharts from "highcharts";
 
 function addChart(node, data) {
-  debugger;
   Highcharts.chart(node, {
     chart: {
       animation: false,
@@ -78,13 +77,22 @@ function addChart(node, data) {
 }
 
 function checkCookingPossibility(elem) {
-  let maxTemp = elem.sF + elem.mUF >= 95 ? elem.fireP : elem.fireP * 0.85;
-  console.log("name: ", elem.name, "fP: ", elem.fireP, maxTemp);
+  let maxTemp = elem.sF + elem.mUF >= 95 ? elem.fireP : elem.fireP * 0.87;
   return maxTemp >= 200 ? true : false;
 }
 
-// function compare(a, b) {
-//   return a - b;
-// }
+function idMaker(str) {
+  let ID = "";
+  for (let i = 0; i < str.length; i++) {
+    ID += +str.charCodeAt(i);
+  }
+  return ID;
+}
 
-export { addChart, checkCookingPossibility /*, compare*/ };
+function findByPattern(str) {
+  if (!str) return item => item;
+  let regex = new RegExp(str.toLowerCase());
+  return item => regex.test(item.name.toLowerCase());
+}
+
+export { addChart, checkCookingPossibility, idMaker, findByPattern };

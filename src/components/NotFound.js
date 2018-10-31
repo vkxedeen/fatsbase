@@ -1,5 +1,6 @@
 import React from "react";
+import { view } from "react-easy-state";
 
-export default function NotFound(props) {
+export default view(function NotFound(props) {
   return <div>Not Found</div>;
-}
+});

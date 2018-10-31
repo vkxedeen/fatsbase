@@ -8,8 +8,10 @@
     "highcharts": "^6.1.4",
     "jsdom": "^12.1.0",
     "needle": "^2.2.4",
+    "ramda": "^0.25.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-easy-state": "^6.0.5",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.4",
     "request": "^2.88.0"
