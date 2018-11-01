@@ -10,7 +10,6 @@ export default view(function ElemInfo(props) {
     R.whereEq({ name: props.match.params.name }),
     states.data
   );
-  debugger;
   return (
     <div>
       <Link to="/">Back </Link> <br />

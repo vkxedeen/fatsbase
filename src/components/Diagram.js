@@ -14,7 +14,6 @@ export default view(
     }
 
     componentWillUnmount() {
-      debugger;
       this.elem.remove();
     }
 
