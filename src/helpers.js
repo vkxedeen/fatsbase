@@ -1,6 +1,6 @@
 import Highcharts from "highcharts";
 
-function addChart(node, data) {
+export function addChart(node, data) {
   Highcharts.chart(node, {
     chart: {
       animation: false,
@@ -76,12 +76,12 @@ function addChart(node, data) {
   });
 }
 
-function checkCookingPossibility(elem) {
+export function checkCookingPossibility(elem) {
   let maxTemp = elem.sF + elem.mUF >= 95 ? elem.fireP : elem.fireP * 0.87;
   return maxTemp >= 200 ? true : false;
 }
 
-function idMaker(str) {
+export function idMaker(str) {
   let ID = "";
   for (let i = 0; i < str.length; i++) {
     ID += +str.charCodeAt(i);
@@ -89,10 +89,8 @@ function idMaker(str) {
   return ID;
 }
 
-function findByPattern(str) {
+export function findByPattern(str) {
   if (!str) return item => item;
   let regex = new RegExp(str.toLowerCase());
   return item => regex.test(item.name.toLowerCase());
 }
-
-export { addChart, checkCookingPossibility, idMaker, findByPattern };

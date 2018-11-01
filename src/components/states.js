@@ -22,11 +22,11 @@ const states = store({
     states.sortDirection = !states.sortDirection;
   },
 
-  checkFrying() {
+  toggleFrying() {
     states.fryChecked = !states.fryChecked;
   },
 
-  checkVegetarian() {
+  toggleVegetarian() {
     states.vegChecked = !states.vegChecked;
   }
 });

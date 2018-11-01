@@ -29,7 +29,7 @@ class App extends React.Component {
           <BrowserRouter>
             <div>
               <Switch>
-                <Route path="/" exact render={() => <Wrapper />} />
+                <Route exact path="/" component={Wrapper} />
                 <Route path="/:name" component={ElemInfo} />
                 <Route path="*" component={NotFound} />
               </Switch>

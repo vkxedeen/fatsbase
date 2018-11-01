@@ -1,8 +1,9 @@
 import React from "react";
-import { checkCookingPossibility, idMaker, findByPattern } from "../helpers";
 import { view } from "react-easy-state";
-import states from "./states";
+import * as helpers from "../helpers";
 import Diagram from "./Diagram";
+import states from "./states";
+
 const R = require("ramda");
 
 class Wrapper extends React.Component {
@@ -10,29 +11,31 @@ class Wrapper extends React.Component {
     super(props);
     this.nodes = [];
   }
+  paintDiagram = item => (
+    <Diagram item={item} key={helpers.idMaker(item.name)} />
+  );
 
-  makeFilterFn = () => {
+  makeFilterFn() {
     if (states.fryChecked && states.vegChecked) {
       return item =>
         item.isVegeterian === true &&
-        checkCookingPossibility(item) === true &&
+        helpers.checkCookingPossibility(item) === true &&
         item.isSelect === true;
     } else if (states.fryChecked) {
       return item =>
-        checkCookingPossibility(item) === true && item.isSelect === true;
+        helpers.checkCookingPossibility(item) === true &&
+        item.isSelect === true;
     } else if (states.vegChecked) {
       return item => item.isVegeterian === true && item.isSelect === true;
     } else {
       return item => item.isSelect === true;
     }
-  };
+  }
 
-  makeSortsByProp = str => {
+  makeSortsByProp(str) {
     if (states.sortDirection) return (a, b) => a[str] - b[str];
     return (a, b) => b[str] - a[str];
-  };
-
-  paintDiagram = item => <Diagram item={item} key={idMaker(item.name)} />;
+  }
 
   render() {
     const {
@@ -41,17 +44,17 @@ class Wrapper extends React.Component {
       inputValue,
       changeForm,
       directionChange,
-      fryChecked,
-      vegChecked,
-      checkFrying,
-      checkVegetarian,
+      toggleFrying,
+      toggleVegetarian,
       setSortProp,
-      sortDirection
+      sortDirection,
+      fryChecked,
+      vegChecked
     } = states;
 
     if (data) {
       let bars = R.pipe(
-        R.filter(findByPattern(inputValue)),
+        R.filter(helpers.findByPattern(inputValue)),
         R.filter(this.makeFilterFn()),
         R.sort(this.makeSortsByProp(sort)),
         R.map(this.paintDiagram)
@@ -64,7 +67,7 @@ class Wrapper extends React.Component {
             <input
               type="text"
               size="40"
-              value={inputValue}
+              defaultValue={inputValue}
               onChange={event => changeForm(event.target.value)}
             />
           </p>
@@ -78,14 +81,14 @@ class Wrapper extends React.Component {
               type="checkbox"
               id="frying"
               checked={fryChecked}
-              onChange={() => checkFrying()}
+              onChange={() => toggleFrying()}
             />
             <label htmlFor="frying">Frying frendly</label>
             <input
               type="checkbox"
               id="vegeterian"
               checked={vegChecked}
-              onChange={() => checkVegetarian()}
+              onChange={() => toggleVegetarian()}
             />
             <label htmlFor="vegeterian">Vegeterian</label>
             <br />

@@ -13,6 +13,11 @@ export default view(
       addChart(this.elem, this.props.item);
     }
 
+    componentWillUnmount() {
+      debugger;
+      this.elem.remove();
+    }
+
     render() {
       let oil = this.props.item.name;
 
