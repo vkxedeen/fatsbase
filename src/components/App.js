@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { view } from "react-easy-state";
-import states from "./states";
+import states from "../state";
 import Wrapper from "./Wrapper";
 import ElemInfo from "./ElemInfo";
 import NotFound from "./NotFound";

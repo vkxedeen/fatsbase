@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { view } from "react-easy-state";
-import states from "./states";
+import states from "../state";
 
 const R = require("ramda");
 
-export default view(function ElemInfo(props) {
+function ElemInfo(props) {
   const elem = R.filter(
     R.whereEq({ name: props.match.params.name }),
     states.data
@@ -19,4 +19,6 @@ export default view(function ElemInfo(props) {
       </div>
     </div>
   );
-});
+}
+
+export default view(ElemInfo);

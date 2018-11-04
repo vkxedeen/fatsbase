@@ -9,6 +9,7 @@ const states = store({
   fryChecked: false,
   vegChecked: false,
   sortDirection: true,
+  singInFormShown: false,
 
   changeForm(str) {
     states.inputValue = str;
@@ -28,6 +29,10 @@ const states = store({
 
   toggleVegetarian() {
     states.vegChecked = !states.vegChecked;
+  },
+
+  toggleSingIn() {
+    states.singInFormShown = !states.singInFormShown;
   }
 });
 

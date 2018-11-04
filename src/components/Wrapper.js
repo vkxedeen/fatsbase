@@ -2,7 +2,8 @@ import React from "react";
 import { view } from "react-easy-state";
 import * as helpers from "../helpers";
 import Diagram from "./Diagram";
-import states from "./states";
+import SingIn from "./Diagram";
+import states from "../state";
 
 const R = require("ramda");
 
@@ -11,9 +12,10 @@ class Wrapper extends React.Component {
     super(props);
     this.nodes = [];
   }
-  paintDiagram = item => (
-    <Diagram item={item} key={helpers.idMaker(item.name)} />
-  );
+
+  paintDiagram(item) {
+    return <Diagram item={item} key={helpers.idMaker(item.name)} />;
+  }
 
   makeFilterFn() {
     if (states.fryChecked && states.vegChecked) {
@@ -49,18 +51,22 @@ class Wrapper extends React.Component {
       setSortProp,
       sortDirection,
       fryChecked,
-      vegChecked
+      vegChecked,
+      toggleSingIn,
+      singInFormShown
     } = states;
 
     if (data) {
-      let bars = R.pipe(
+      const bars = R.pipe(
         R.filter(helpers.findByPattern(inputValue)),
         R.filter(this.makeFilterFn()),
         R.sort(this.makeSortsByProp(sort)),
         R.map(this.paintDiagram)
       )(data);
+      const singIn = singInFormShown ? <SingIn data={data} /> : null;
       return (
         <div id="container">
+          <button onClick={() => toggleSingIn()}>Sing in</button>
           <p>
             <b>Find:</b>
             <br />
@@ -125,6 +131,7 @@ class Wrapper extends React.Component {
             <label htmlFor="om6">Omega 6</label>
           </p>
           {bars}
+          {singIn}
         </div>
       );
     } else {
