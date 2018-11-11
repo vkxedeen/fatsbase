@@ -10,30 +10,7 @@ const states = store({
   vegChecked: false,
   sortDirection: true,
   singInFormShown: false,
-
-  changeForm(str) {
-    states.inputValue = str;
-  },
-
-  setSortProp(str) {
-    states.sort = str;
-  },
-
-  directionChange() {
-    states.sortDirection = !states.sortDirection;
-  },
-
-  toggleFrying() {
-    states.fryChecked = !states.fryChecked;
-  },
-
-  toggleVegetarian() {
-    states.vegChecked = !states.vegChecked;
-  },
-
-  toggleSingIn() {
-    states.singInFormShown = !states.singInFormShown;
-  }
+  menuFormShown: false
 });
 
 export default states;

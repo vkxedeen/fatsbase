@@ -1,29 +1,17 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { view } from "react-easy-state";
-import states from "../state";
+import * as actions from "../actions";
 
-const modalRoot = document.getElementById("singin");
-
-class SingIn extends React.Component {
-  constructor(props) {
-    super(props);
-    this.el = document.createElement("div");
-  }
-
-  componentDidMount() {
-    modalRoot.appendChild(this.el);
-  }
-
-  componentWillUnmount() {
-    modalRoot.removeChild(this.el);
-  }
-
-  render() {
-    console.log("1");
-    const button = <button>new</button>;
-    return ReactDOM.createPortal(button, this.el);
-  }
+function SingIn() {
+  return (
+    <div className="modal">
+      Your name is
+      <input type="text" size="40" />
+      Password
+      <input type="text" size="40" />
+      <button onClick={() => actions.toggleSingIn()}>Ok</button>
+    </div>
+  );
 }
 
 export default view(SingIn);

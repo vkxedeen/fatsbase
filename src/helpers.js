@@ -94,3 +94,24 @@ export function findByPattern(str) {
   let regex = new RegExp(str.toLowerCase());
   return item => regex.test(item.name.toLowerCase());
 }
+
+export function makeFilterFn(fryChecked, vegChecked) {
+  if (fryChecked && vegChecked) {
+    return item =>
+      item.isVegeterian === true &&
+      checkCookingPossibility(item) === true &&
+      item.isSelect === true;
+  } else if (fryChecked) {
+    return item =>
+      checkCookingPossibility(item) === true && item.isSelect === true;
+  } else if (vegChecked) {
+    return item => item.isVegeterian === true && item.isSelect === true;
+  } else {
+    return item => item.isSelect === true;
+  }
+}
+
+export function makeSortsByProp(sortDirection, str) {
+  if (sortDirection) return (a, b) => a[str] - b[str];
+  return (a, b) => b[str] - a[str];
+}

@@ -1,42 +1,15 @@
 import React from "react";
 import { view } from "react-easy-state";
 import * as helpers from "../helpers";
+import * as actions from "../actions";
 import Diagram from "./Diagram";
-import SingIn from "./Diagram";
 import states from "../state";
 
 const R = require("ramda");
 
-class Wrapper extends React.Component {
-  constructor(props) {
-    super(props);
-    this.nodes = [];
-  }
-
+class Table extends React.Component {
   paintDiagram(item) {
     return <Diagram item={item} key={helpers.idMaker(item.name)} />;
-  }
-
-  makeFilterFn() {
-    if (states.fryChecked && states.vegChecked) {
-      return item =>
-        item.isVegeterian === true &&
-        helpers.checkCookingPossibility(item) === true &&
-        item.isSelect === true;
-    } else if (states.fryChecked) {
-      return item =>
-        helpers.checkCookingPossibility(item) === true &&
-        item.isSelect === true;
-    } else if (states.vegChecked) {
-      return item => item.isVegeterian === true && item.isSelect === true;
-    } else {
-      return item => item.isSelect === true;
-    }
-  }
-
-  makeSortsByProp(str) {
-    if (states.sortDirection) return (a, b) => a[str] - b[str];
-    return (a, b) => b[str] - a[str];
   }
 
   render() {
@@ -44,29 +17,21 @@ class Wrapper extends React.Component {
       data,
       sort,
       inputValue,
-      changeForm,
-      directionChange,
-      toggleFrying,
-      toggleVegetarian,
-      setSortProp,
       sortDirection,
       fryChecked,
-      vegChecked,
-      toggleSingIn,
-      singInFormShown
+      vegChecked
     } = states;
 
     if (data) {
       const bars = R.pipe(
         R.filter(helpers.findByPattern(inputValue)),
-        R.filter(this.makeFilterFn()),
-        R.sort(this.makeSortsByProp(sort)),
+        R.filter(helpers.makeFilterFn(fryChecked, vegChecked)),
+        R.sort(helpers.makeSortsByProp(sortDirection, sort)),
         R.map(this.paintDiagram)
       )(data);
-      const singIn = singInFormShown ? <SingIn data={data} /> : null;
+
       return (
         <div id="container">
-          <button onClick={() => toggleSingIn()}>Sing in</button>
           <p>
             <b>Find:</b>
             <br />
@@ -74,12 +39,15 @@ class Wrapper extends React.Component {
               type="text"
               size="40"
               defaultValue={inputValue}
-              onChange={event => changeForm(event.target.value)}
+              onChange={event => actions.changeForm(event.target.value)}
             />
           </p>
           <p>
             Упорядочить по
-            <select value={sortDirection} onChange={() => directionChange()}>
+            <select
+              value={sortDirection}
+              onChange={() => actions.directionChange()}
+            >
               <option value={true}>Возрастанию</option>
               <option value={false}>Убыванию</option>
             </select>
@@ -87,14 +55,14 @@ class Wrapper extends React.Component {
               type="checkbox"
               id="frying"
               checked={fryChecked}
-              onChange={() => toggleFrying()}
+              onChange={() => actions.toggleFrying()}
             />
             <label htmlFor="frying">Frying frendly</label>
             <input
               type="checkbox"
               id="vegeterian"
               checked={vegChecked}
-              onChange={() => toggleVegetarian()}
+              onChange={() => actions.toggleVegetarian()}
             />
             <label htmlFor="vegeterian">Vegeterian</label>
             <br />
@@ -105,33 +73,32 @@ class Wrapper extends React.Component {
               type="radio"
               id="sf"
               name="sort"
-              onChange={() => setSortProp("sF")}
+              onChange={() => actions.setSortProp("sF")}
             />
             <label htmlFor="sF">Saturated fats</label>
             <input
               type="radio"
               id="mUF"
               name="sort"
-              onChange={() => setSortProp("mUF")}
+              onChange={() => actions.setSortProp("mUF")}
             />
             <label htmlFor="mUF">Monounsaturated fats</label>
             <input
               type="radio"
               id="om3"
               name="sort"
-              onChange={() => setSortProp("omega3")}
+              onChange={() => actions.setSortProp("omega3")}
             />
             <label htmlFor="om3">Omega 3</label>
             <input
               type="radio"
               id="om6"
               name="sort"
-              onChange={() => setSortProp("omega6")}
+              onChange={() => actions.setSortProp("omega6")}
             />
             <label htmlFor="om6">Omega 6</label>
           </p>
           {bars}
-          {singIn}
         </div>
       );
     } else {
@@ -140,4 +107,4 @@ class Wrapper extends React.Component {
   }
 }
 
-export default view(Wrapper);
+export default view(Table);
