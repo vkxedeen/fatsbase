@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { view } from "react-easy-state";
-import states from "../state";
+import state from "../state";
 import Table from "./Table";
 import ElemInfo from "./ElemInfo";
 import NotFound from "./NotFound";
 import * as actions from "../actions";
 import Modal from "./Modal";
-import SingIn from "./SingIn";
+import SignIn from "./SignIn";
 
 class App extends React.Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ class App extends React.Component {
         return response.json();
       })
       .then(function(result) {
-        states.data = result.map(item => {
+        state.data = result.map(item => {
           item.isSelect = true;
           return item;
         });
@@ -25,10 +25,10 @@ class App extends React.Component {
   }
 
   render() {
-    const { data, singInFormShown, menuFormShown } = states;
-    const singIn = singInFormShown ? (
+    const { data, signInFormShown, menuFormShown } = state;
+    const signIn = signInFormShown ? (
       <Modal>
-        <SingIn />
+        <SignIn />
       </Modal>
     ) : null;
     const menu = menuFormShown ? (
@@ -42,9 +42,9 @@ class App extends React.Component {
     if (data) {
       return (
         <div>
-          {singIn}
+          {signIn}
           {menu}
-          <button onClick={() => actions.toggleSingIn()}>Sing in</button>
+          <button onClick={() => actions.toggleSignIn()}>Sing in</button>
           <button onClick={() => actions.toggleShowMenu()}>Menu</button>
           <BrowserRouter>
             <div>

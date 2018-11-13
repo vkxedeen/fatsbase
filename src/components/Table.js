@@ -1,11 +1,11 @@
 import React from "react";
 import { view } from "react-easy-state";
 import * as helpers from "../helpers";
-import * as actions from "../actions";
+import * as localActions from "./localActions";
 import Diagram from "./Diagram";
-import states from "../state";
-
-const R = require("ramda");
+import state from "../state";
+import localState from "./localState";
+import * as R from "ramda";
 
 class Table extends React.Component {
   paintDiagram(item) {
@@ -13,20 +13,19 @@ class Table extends React.Component {
   }
 
   render() {
+    const data = state.data;
     const {
-      data,
-      sort,
       inputValue,
       sortDirection,
       fryChecked,
-      vegChecked
-    } = states;
-
+      vegChecked,
+      sort
+    } = localState;
     if (data) {
       const bars = R.pipe(
         R.filter(helpers.findByPattern(inputValue)),
         R.filter(helpers.makeFilterFn(fryChecked, vegChecked)),
-        R.sort(helpers.makeSortsByProp(sortDirection, sort)),
+        R.sort(helpers.makeSortFn(sortDirection, sort)),
         R.map(this.paintDiagram)
       )(data);
 
@@ -39,14 +38,14 @@ class Table extends React.Component {
               type="text"
               size="40"
               defaultValue={inputValue}
-              onChange={event => actions.changeForm(event.target.value)}
+              onChange={event => localActions.changeForm(event.target.value)}
             />
           </p>
           <p>
             Упорядочить по
             <select
               value={sortDirection}
-              onChange={() => actions.directionChange()}
+              onChange={() => localActions.directionChange()}
             >
               <option value={true}>Возрастанию</option>
               <option value={false}>Убыванию</option>
@@ -55,14 +54,14 @@ class Table extends React.Component {
               type="checkbox"
               id="frying"
               checked={fryChecked}
-              onChange={() => actions.toggleFrying()}
+              onChange={() => localActions.toggleFrying()}
             />
             <label htmlFor="frying">Frying frendly</label>
             <input
               type="checkbox"
               id="vegeterian"
               checked={vegChecked}
-              onChange={() => actions.toggleVegetarian()}
+              onChange={() => localActions.toggleVegetarian()}
             />
             <label htmlFor="vegeterian">Vegeterian</label>
             <br />
@@ -73,28 +72,28 @@ class Table extends React.Component {
               type="radio"
               id="sf"
               name="sort"
-              onChange={() => actions.setSortProp("sF")}
+              onChange={() => localActions.setSortProp("sF")}
             />
             <label htmlFor="sF">Saturated fats</label>
             <input
               type="radio"
               id="mUF"
               name="sort"
-              onChange={() => actions.setSortProp("mUF")}
+              onChange={() => localActions.setSortProp("mUF")}
             />
             <label htmlFor="mUF">Monounsaturated fats</label>
             <input
               type="radio"
               id="om3"
               name="sort"
-              onChange={() => actions.setSortProp("omega3")}
+              onChange={() => localActions.setSortProp("omega3")}
             />
             <label htmlFor="om3">Omega 3</label>
             <input
               type="radio"
               id="om6"
               name="sort"
-              onChange={() => actions.setSortProp("omega6")}
+              onChange={() => localActions.setSortProp("omega6")}
             />
             <label htmlFor="om6">Omega 6</label>
           </p>

@@ -1,16 +1,9 @@
 import { store } from "react-easy-state";
 
-const states = store({
+const state = store({
   data: null,
-  markedData: null,
-  inputValue: undefined,
-  formValue: false,
-  sort: null,
-  fryChecked: false,
-  vegChecked: false,
-  sortDirection: true,
-  singInFormShown: false,
+  signInFormShown: false,
   menuFormShown: false
 });
 
-export default states;
+export default state;

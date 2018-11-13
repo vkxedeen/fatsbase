@@ -111,7 +111,7 @@ export function makeFilterFn(fryChecked, vegChecked) {
   }
 }
 
-export function makeSortsByProp(sortDirection, str) {
+export function makeSortFn(sortDirection, str) {
   if (sortDirection) return (a, b) => a[str] - b[str];
   return (a, b) => b[str] - a[str];
 }
