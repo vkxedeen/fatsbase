@@ -44,7 +44,7 @@ class App extends React.Component {
         <div>
           {signIn}
           {menu}
-          <button onClick={() => actions.toggleSignIn()}>Sing in</button>
+          <button onClick={() => actions.toggleSignIn()}>Sign in</button>
           <button onClick={() => actions.toggleShowMenu()}>Menu</button>
           <BrowserRouter>
             <div>
