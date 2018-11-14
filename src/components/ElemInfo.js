@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 const R = require("ramda");
 
 function ElemInfo(props) {
+  let {match, data} = props
   const elem = R.filter(
-    R.whereEq({ name: props.match.params.name }),
-    props.data
+    R.whereEq({ name: match.params.name }),
+    data
   );
   return (
     <div>
