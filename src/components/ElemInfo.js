@@ -6,6 +6,7 @@ const R = require("ramda");
 function ElemInfo(props) {
   let { data, match } = props;
   const elem = R.filter(R.whereEq({ name: match.params.name }), data);
+
   return (
     <div>
       <Link to="/">Back </Link> <br />

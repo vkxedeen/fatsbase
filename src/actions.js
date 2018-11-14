@@ -7,8 +7,3 @@ export function toggleSignIn() {
 export function toggleShowMenu() {
   state.menuFormShown = !state.menuFormShown;
 }
-
-export function changeForm(property, str) {
-  debugger;
-  return (property = str);
-}
