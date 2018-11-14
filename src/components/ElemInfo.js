@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 const R = require("ramda");
 
 function ElemInfo(props) {
-  const elem = R.filter(
-    R.whereEq({ name: props.match.params.name }),
-    props.data
-  );
+  let { data, match } = props;
+  const elem = R.filter(R.whereEq({ name: match.params.name }), data);
   return (
     <div>
       <Link to="/">Back </Link> <br />

@@ -2,12 +2,12 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { view } from "react-easy-state";
 import state from "../state";
-import Table from "./Table";
+import Table from "./Table/Table";
 import ElemInfo from "./ElemInfo";
 import NotFound from "./NotFound";
 import * as actions from "../actions";
 import Modal from "./Modal";
-import SignIn from "./SignIn";
+import SignIn from "./SignIn/SignIn";
 
 class App extends React.Component {
   componentDidMount() {
