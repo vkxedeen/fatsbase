@@ -8,10 +8,6 @@ import localState from "./localState";
 import * as R from "ramda";
 
 class Table extends React.Component {
-  paintDiagram(item) {
-    return <Diagram item={item} key={helpers.idMaker(item.name)} />;
-  }
-
   render() {
     const data = state.data;
     const {
@@ -26,7 +22,7 @@ class Table extends React.Component {
         R.filter(helpers.findByPattern(inputValue)),
         R.filter(helpers.makeFilterFn(fryChecked, vegChecked)),
         R.sort(helpers.makeSortFn(sortDirection, sort)),
-        R.map(this.paintDiagram)
+        R.map(item => <Diagram item={item} key={helpers.idMaker(item.name)} />)
       )(data);
 
       return (
