@@ -3,7 +3,6 @@ import signInState from "./state";
 import globalState from "../../state";
 
 export function showStatesInConsole(event) {
-  debugger;
   console.log("-------------Global states--------------");
   console.log("Fats data:", globalState.data);
   console.log("Sign in modal window visibility:", globalState.signInFormShown);

@@ -6,7 +6,7 @@ import Table from "./Table/Table";
 import ElemInfo from "./ElemInfo";
 import NotFound from "./NotFound";
 import * as actions from "../actions";
-import Modal from "./Modal";
+import Toggle from "./Toggle";
 import SignIn from "./SignIn/SignIn";
 
 class App extends React.Component {
@@ -25,26 +25,19 @@ class App extends React.Component {
   }
 
   render() {
-    const { data, signInFormShown, menuFormShown } = state;
-    const signIn = signInFormShown ? (
-      <Modal>
-        <SignIn />
-      </Modal>
-    ) : null;
-    const menu = menuFormShown ? (
-      <Modal>
-        <div className="modal">
-          some element
-          <button onClick={() => actions.toggleShowMenu()}>Ok</button>
-        </div>
-      </Modal>
-    ) : null;
+    const { data } = state;
     if (data) {
       return (
         <div>
-          {signIn}
-          {menu}
-          <button onClick={() => actions.toggleSignIn()}>Sign in</button>
+          <Toggle>
+            {({ on, toggle }) => (
+              <div>
+                {on && <SignIn toggle={toggle} />}
+                <button onClick={toggle}>Sign in</button>
+              </div>
+            )}
+          </Toggle>
+
           <button onClick={() => actions.toggleShowMenu()}>Menu</button>
           <BrowserRouter>
             <div>
