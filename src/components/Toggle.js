@@ -9,12 +9,10 @@ export default class Toggle extends React.Component {
   }
 
   toggle = () => {
-    debugger;
     this.setState(state => ({ on: !state.on }));
   };
 
   render() {
-    debugger;
     let { children } = this.props;
     return children({
       on: this.state.on,
