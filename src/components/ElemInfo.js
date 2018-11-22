@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const R = require("ramda");
+import * as R from "ramda";
 
 function ElemInfo(props) {
   let { data, match } = props;
