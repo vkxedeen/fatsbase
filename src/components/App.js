@@ -45,7 +45,7 @@ class App extends React.Component {
                 <Route exact path="/" component={Table} />
                 <Route
                   path="/:name"
-                  //render={props => <ElemInfo {...props} data={data} />}
+                  render={props => <ElemInfo {...props} data={data} />}
                 />
                 />
                 <Route path="*" component={NotFound} />
