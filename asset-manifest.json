@@ -1,11 +1,11 @@
 {
-  "main.js": "/fatsbase/static/js/main.947e119c.chunk.js",
-  "main.js.map": "/fatsbase/static/js/main.947e119c.chunk.js.map",
+  "main.js": "/fatsbase/static/js/main.accb5a7b.chunk.js",
+  "main.js.map": "/fatsbase/static/js/main.accb5a7b.chunk.js.map",
   "static/js/1.0a5a4c1e.chunk.js": "/fatsbase/static/js/1.0a5a4c1e.chunk.js",
   "static/js/1.0a5a4c1e.chunk.js.map": "/fatsbase/static/js/1.0a5a4c1e.chunk.js.map",
   "runtime~main.js": "/fatsbase/static/js/runtime~main.ec1e136a.js",
   "runtime~main.js.map": "/fatsbase/static/js/runtime~main.ec1e136a.js.map",
   "index.html": "/fatsbase/index.html",
-  "precache-manifest.1700f489a75f450aaaeb7b2718cf069d.js": "/fatsbase/precache-manifest.1700f489a75f450aaaeb7b2718cf069d.js",
+  "precache-manifest.c47b996e4924b6fc6431a722848403ee.js": "/fatsbase/precache-manifest.c47b996e4924b6fc6431a722848403ee.js",
   "service-worker.js": "/fatsbase/service-worker.js"
 }
