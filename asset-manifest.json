@@ -1,11 +1,11 @@
 {
-  "main.js": "/fatsbase/static/js/main.ad5c8ff5.chunk.js",
-  "main.js.map": "/fatsbase/static/js/main.ad5c8ff5.chunk.js.map",
-  "static/js/1.0a5a4c1e.chunk.js": "/fatsbase/static/js/1.0a5a4c1e.chunk.js",
-  "static/js/1.0a5a4c1e.chunk.js.map": "/fatsbase/static/js/1.0a5a4c1e.chunk.js.map",
+  "main.js": "/fatsbase/static/js/main.8142a64e.chunk.js",
+  "main.js.map": "/fatsbase/static/js/main.8142a64e.chunk.js.map",
+  "static/js/1.4785994f.chunk.js": "/fatsbase/static/js/1.4785994f.chunk.js",
+  "static/js/1.4785994f.chunk.js.map": "/fatsbase/static/js/1.4785994f.chunk.js.map",
   "runtime~main.js": "/fatsbase/static/js/runtime~main.ec1e136a.js",
   "runtime~main.js.map": "/fatsbase/static/js/runtime~main.ec1e136a.js.map",
   "index.html": "/fatsbase/index.html",
-  "precache-manifest.a01848991813a136ca8b0503f2b1d4a8.js": "/fatsbase/precache-manifest.a01848991813a136ca8b0503f2b1d4a8.js",
+  "precache-manifest.f40cc0b92bcb0d82a5d7daf84a6c9654.js": "/fatsbase/precache-manifest.f40cc0b92bcb0d82a5d7daf84a6c9654.js",
   "service-worker.js": "/fatsbase/service-worker.js"
 }
