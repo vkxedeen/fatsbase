@@ -10,6 +10,7 @@ import Toggle from "./Toggle";
 import SignIn from "./SignIn/SignIn";
 import Header from "./Header";
 import Footer from "./Footer";
+import Menu from "./Menu";
 
 class App extends React.Component {
   componentDidMount() {
@@ -30,8 +31,9 @@ class App extends React.Component {
     const { data } = state;
 
     return (
-      <div className="card">
+      <div className="container">
         <Header />
+        <Menu />
         {data ? (
           <BrowserRouter>
             <div className="container table">
