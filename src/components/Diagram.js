@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { view } from "react-easy-state";
 import { addChart } from "../helpers";
+import "./Diagram-style.css";
 
 export default view(
   class Diagram extends React.Component {
@@ -21,10 +22,10 @@ export default view(
       let oil = this.props.item.name;
 
       return (
-        <div>
+        <li className="list-group-item row">
           <Link to={`/${oil}`}>{oil}</Link>
           <div ref={node => (this.elem = node)} />
-        </div>
+        </li>
       );
     }
   }

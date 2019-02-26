@@ -8,6 +8,8 @@ import NotFound from "./NotFound";
 import * as actions from "../actions";
 import Toggle from "./Toggle";
 import SignIn from "./SignIn/SignIn";
+import Header from "./Header";
+import Footer from "./Footer";
 
 class App extends React.Component {
   componentDidMount() {
@@ -26,21 +28,13 @@ class App extends React.Component {
 
   render() {
     const { data } = state;
-    if (data) {
-      return (
-        <div>
-          <Toggle>
-            {({ on, toggle }) => (
-              <div>
-                {on && <SignIn toggle={toggle} />}
-                <button onClick={toggle}>Sign in</button>
-              </div>
-            )}
-          </Toggle>
 
-          <button onClick={() => actions.toggleShowMenu()}>Menu</button>
+    return (
+      <div className="card">
+        <Header />
+        {data ? (
           <BrowserRouter>
-            <div>
+            <div className="container table">
               <Switch>
                 <Route exact path="/" component={Table} />
                 <Route
@@ -52,12 +46,24 @@ class App extends React.Component {
               </Switch>
             </div>
           </BrowserRouter>
-        </div>
-      );
-    } else {
-      return <div>Loading...</div>;
-    }
+        ) : (
+          <div>Loading...</div>
+        )}
+        <Footer />
+      </div>
+    );
   }
 }
 
 export default view(App);
+
+/*    <Toggle>
+            {({ on, toggle }) => (
+              <div>
+                {on && <SignIn toggle={toggle} />}
+                <button onClick={toggle}>Sign in</button>
+              </div>
+            )}
+          </Toggle>
+          <button onClick={() => actions.toggleShowMenu()}>Menu</button>
+      */

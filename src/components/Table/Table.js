@@ -19,7 +19,7 @@ function Table() {
     )(data);
 
     return (
-      <div id="container">
+      <div>
         <p>
           <b>Find:</b>
           <br />
@@ -86,7 +86,7 @@ function Table() {
           />
           <label htmlFor="om6">Omega 6</label>
         </p>
-        {bars}
+        <ul className="list-group">{bars}</ul>
       </div>
     );
   } else {
