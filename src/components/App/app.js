@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { view } from "react-easy-state";
-import state from "../state";
-import Table from "./Table/Table";
-import ElemInfo from "./ElemInfo";
-import NotFound from "./NotFound";
-import * as actions from "../actions";
-import Toggle from "./Toggle";
-import SignIn from "./SignIn/SignIn";
-import Header from "./Header";
-import Footer from "./Footer";
-import Menu from "./Menu";
+import state from "../../state";
+import * as helpers from "../../helpers";
+import * as R from "ramda";
+import Table from "../Table";
+import ElemInfo from "../ElemInfo";
+import Header from "../Header";
+import Footer from "../Footer";
+import Menu from "../Menu";
+
+import "./app-style.css";
 
 class App extends React.Component {
   componentDidMount() {
@@ -28,7 +28,21 @@ class App extends React.Component {
   }
 
   render() {
-    const { data } = state;
+    const {
+      inputValue,
+      sortDirection,
+      fryChecked,
+      vegChecked,
+      sort,
+      data
+    } = state;
+    const visibleData = data
+      ? R.pipe(
+          R.filter(helpers.findByPattern(inputValue)),
+          R.filter(helpers.makeFilterFn(fryChecked, vegChecked)),
+          R.sort(helpers.makeSortFn(sortDirection, sort))
+        )(data)
+      : [];
 
     return (
       <div className="container">
@@ -36,15 +50,19 @@ class App extends React.Component {
         <Menu />
         {data ? (
           <BrowserRouter>
-            <div className="container table">
+            <div className="jumbotron">
               <Switch>
-                <Route exact path="/" component={Table} />
+                <Route
+                  exact
+                  path="/"
+                  render={props => <Table visibleData={visibleData} />}
+                />
                 <Route
                   path="/:name"
                   render={props => <ElemInfo {...props} data={data} />}
                 />
                 />
-                <Route path="*" component={NotFound} />
+                {/*<Route path="*" component={NotFound} />*/}
               </Switch>
             </div>
           </BrowserRouter>
@@ -58,14 +76,3 @@ class App extends React.Component {
 }
 
 export default view(App);
-
-/*    <Toggle>
-            {({ on, toggle }) => (
-              <div>
-                {on && <SignIn toggle={toggle} />}
-                <button onClick={toggle}>Sign in</button>
-              </div>
-            )}
-          </Toggle>
-          <button onClick={() => actions.toggleShowMenu()}>Menu</button>
-      */

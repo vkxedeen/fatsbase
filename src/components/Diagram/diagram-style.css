@@ -1,0 +1,15 @@
+.diagram {
+  display: flex;
+  text-decoration: none;
+  justify-content: space-between;
+  align-items: center;
+}
+.link-text {
+  text-decoration: none;
+  padding-right: 10px;
+  width: 30%;
+}
+
+.graph {
+  justify-content: space-between;
+}

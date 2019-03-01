@@ -1,13 +1,17 @@
 import Highcharts from "highcharts";
 
 export function addChart(node, data) {
+  const { sF, mUF, omega3, omega6 } = data;
   Highcharts.chart(node, {
     chart: {
       animation: false,
-      height: 60,
-      width: (data.sF + data.mUF + data.omega6 + data.omega3 + 2.5) * 5,
+      backgroundColor: "#fff",
+      height: 25,
+      width: (sF + mUF + omega3 + omega6 + 2) * 5,
       type: "bar",
-      title: null
+      title: null,
+      margin: [-100, 0, -100, 0],
+      spacing: [0, 0, 0, -10]
     },
     title: {
       text: null
@@ -36,33 +40,34 @@ export function addChart(node, data) {
     },
     plotOptions: {
       series: {
-        animation: false,
+        pointPadding: 0,
+        animation: "false",
         stacking: "normal",
         dataLabels: {
           enabled: true,
           align: "center",
           color: "#000000"
         },
-        maxPointWidth: 25
+        maxPointWidth: 0
       }
     },
 
     series: [
       {
         name: "Omega 6",
-        data: [data.omega6]
+        data: [omega6]
       },
       {
         name: "Omega 3",
-        data: [data.omega3]
+        data: [omega3]
       },
       {
         name: "Monounsaturated fats",
-        data: [data.mUF]
+        data: [mUF]
       },
       {
         name: "Saturated fats",
-        data: [data.sF]
+        data: [sF]
       }
     ],
     navigation: {
@@ -79,14 +84,6 @@ export function addChart(node, data) {
 export function checkCookingPossibility(elem) {
   let maxTemp = elem.sF + elem.mUF >= 95 ? elem.fireP : elem.fireP * 0.87;
   return maxTemp >= 200 ? true : false;
-}
-
-export function idMaker(str) {
-  let ID = "";
-  for (let i = 0; i < str.length; i++) {
-    ID += +str.charCodeAt(i);
-  }
-  return ID;
 }
 
 export function findByPattern(str) {
