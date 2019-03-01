@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/fatsbase/static/js/runtime~main.ec1e136a.js"
   },
   {
-    "revision": "ce700f7d16bea497184a",
-    "url": "/fatsbase/static/js/main.ce700f7d.chunk.js"
+    "revision": "a5643fff598e5325f8a5",
+    "url": "/fatsbase/static/js/main.a5643fff.chunk.js"
   },
   {
     "revision": "09a839d7fb34233a73b6",
     "url": "/fatsbase/static/js/1.09a839d7.chunk.js"
   },
   {
-    "revision": "ce700f7d16bea497184a",
+    "revision": "a5643fff598e5325f8a5",
     "url": "/fatsbase/static/css/main.ad16ca92.chunk.css"
   },
   {
-    "revision": "76b55fec8b928f387385713a48bf598a",
+    "revision": "d1ff70efd2c23a063b75b83484b589c6",
     "url": "/fatsbase/index.html"
   }
 ];
