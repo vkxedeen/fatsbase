@@ -4,6 +4,7 @@ import Diagram from "../Diagram";
 import "./table-style.css";
 
 function Table(props) {
+  debugger;
   const data = props.visibleData.map(item => (
     <Diagram item={item} key={item.name} />
   ));

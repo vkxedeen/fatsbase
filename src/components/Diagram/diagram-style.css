@@ -13,3 +13,38 @@
 .graph {
   justify-content: space-between;
 }
+
+.highcharts-container {
+  width: 100% !important;
+}
+
+.highcharts-color-1 {
+  fill: rgb(233, 252, 151);
+  stroke: 0;
+}
+
+.highcharts-background {
+  width: 100%;
+  opacity: 0;
+}
+
+.highcharts-color-4 {
+  opacity: 0;
+}
+
+.highcharts-data-label-color-4 > text {
+  font-size: 0px !important;
+}
+
+g.highcharts-color-4 .highcharts-tooltip-box {
+  fill-opacity: 0;
+  stroke-width: 0;
+}
+
+g.highcharts-color-4 text {
+  fill-opacity: 0;
+}
+
+tspan {
+  stroke-opacity: 0;
+}

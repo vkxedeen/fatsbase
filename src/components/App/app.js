@@ -4,11 +4,11 @@ import { view } from "react-easy-state";
 import state from "../../state";
 import * as helpers from "../../helpers";
 import * as R from "ramda";
-import Table from "../Table";
-import ElemInfo from "../ElemInfo";
+import Home from "../../pages/Home";
+import NotFound from "../../pages/NotFound";
+import Details from "../../pages/Details";
 import Header from "../Header";
 import Footer from "../Footer";
-import Menu from "../Menu";
 
 import "./app-style.css";
 
@@ -47,7 +47,6 @@ class App extends React.Component {
     return (
       <div className="container">
         <Header />
-        <Menu />
         {data ? (
           <BrowserRouter>
             <div className="jumbotron">
@@ -55,14 +54,13 @@ class App extends React.Component {
                 <Route
                   exact
                   path="/"
-                  render={props => <Table visibleData={visibleData} />}
+                  render={() => <Home visibleData={visibleData} />}
                 />
                 <Route
                   path="/:name"
-                  render={props => <ElemInfo {...props} data={data} />}
+                  render={props => <Details {...props} data={data} />}
                 />
-                />
-                {/*<Route path="*" component={NotFound} />*/}
+                <Route render={() => <NotFound />} />
               </Switch>
             </div>
           </BrowserRouter>

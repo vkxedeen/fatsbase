@@ -72,7 +72,7 @@ function Menu() {
         </label>
       </div>
 
-      <div class="filter-group btn-group">
+      <div className="filter-group btn-group">
         <div className="btn-group btn-group-toggle">{buttons}</div>
         <select
           className="select"

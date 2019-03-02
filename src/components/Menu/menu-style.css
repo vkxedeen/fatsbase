@@ -23,7 +23,7 @@
 }
 
 .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
-  background-color: #6c757d;
+  background-color: #157dd8;
   transform: translateX(0.75rem);
 }
 

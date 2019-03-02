@@ -1,0 +1,25 @@
+.pie {
+  border-radius: 3px;
+}
+
+.highcharts-pie-series {
+  stroke: 0;
+}
+
+.highcharts-pie-series tspan {
+  color: #a6a8aa;
+  fill: #a6a8aa;
+  font-weight: 400 !important;
+  font-size: 0.9rem;
+}
+
+.highcharts-data-label.highcharts-data-label-color-4 tspan {
+  font-size: 0px !important;
+}
+
+.highcharts-title tspan {
+  font-weight: bolder;
+  color: #a6a8aa;
+  font-size: larger;
+  fill: #a6a8aa;
+}
