@@ -20,7 +20,7 @@
 
 .highcharts-color-1 {
   fill: rgb(233, 252, 151);
-  stroke: 0;
+  stroke-width: 0;
 }
 
 .highcharts-background {

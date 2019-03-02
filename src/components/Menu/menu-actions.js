@@ -13,7 +13,6 @@ export function directionChange() {
 }
 
 export function toggleFrying() {
-  debugger;
   state.fryChecked = !state.fryChecked;
 }
 
