@@ -1,13 +1,13 @@
 {
-  "main.css": "/fatsbase/static/css/main.dde17fbe.chunk.css",
-  "main.js": "/fatsbase/static/js/main.5d69ef35.chunk.js",
-  "main.js.map": "/fatsbase/static/js/main.5d69ef35.chunk.js.map",
-  "static/js/1.a7dfa596.chunk.js": "/fatsbase/static/js/1.a7dfa596.chunk.js",
-  "static/js/1.a7dfa596.chunk.js.map": "/fatsbase/static/js/1.a7dfa596.chunk.js.map",
+  "main.css": "/fatsbase/static/css/main.989b9b2d.chunk.css",
+  "main.js": "/fatsbase/static/js/main.a1e527a8.chunk.js",
+  "main.js.map": "/fatsbase/static/js/main.a1e527a8.chunk.js.map",
+  "static/js/1.d826b9ef.chunk.js": "/fatsbase/static/js/1.d826b9ef.chunk.js",
+  "static/js/1.d826b9ef.chunk.js.map": "/fatsbase/static/js/1.d826b9ef.chunk.js.map",
   "runtime~main.js": "/fatsbase/static/js/runtime~main.ec1e136a.js",
   "runtime~main.js.map": "/fatsbase/static/js/runtime~main.ec1e136a.js.map",
-  "static/css/main.dde17fbe.chunk.css.map": "/fatsbase/static/css/main.dde17fbe.chunk.css.map",
+  "static/css/main.989b9b2d.chunk.css.map": "/fatsbase/static/css/main.989b9b2d.chunk.css.map",
   "index.html": "/fatsbase/index.html",
-  "precache-manifest.f95a31c5d4686c35d618ad0d73f2382e.js": "/fatsbase/precache-manifest.f95a31c5d4686c35d618ad0d73f2382e.js",
+  "precache-manifest.b9c6c95dd0190bf91b47d2aef20dbef7.js": "/fatsbase/precache-manifest.b9c6c95dd0190bf91b47d2aef20dbef7.js",
   "service-worker.js": "/fatsbase/service-worker.js"
 }
