@@ -1,6 +1,5 @@
-.custom-control-input:checked ~ .custom-control-label::before {
-  border-color: #6c757d;
-  background-color: #6c757d;
+.custom-control-input:checked ~ .custom-control-label {
+  color: #66a9e4;
 }
 
 .custom-control-input:checked ~ .custom-control-label::before {
@@ -25,9 +24,13 @@
 .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
   background-color: #157dd8;
   transform: translateX(0.75rem);
+  color: #157dd8;
 }
 
-.btn-secondary {
+.custom-switch
+  .custom-control-input:checked
+  ~ .custom-control-label::after
+  .btn-secondary {
   white-space: wrap;
   padding: 0.5rem;
 }

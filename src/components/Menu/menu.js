@@ -79,8 +79,8 @@ function Menu() {
           value={sortDirection}
           onChange={() => actions.directionChange()}
         >
-          <option value={true}>Increase</option>
-          <option value={false}>Decrease</option>
+          <option value={true}>Ascending</option>
+          <option value={false}>Descending</option>
         </select>
       </div>
     </div>

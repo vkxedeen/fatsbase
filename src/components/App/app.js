@@ -9,6 +9,7 @@ import NotFound from "../../pages/NotFound";
 import Details from "../../pages/Details";
 import Header from "../Header";
 import Footer from "../Footer";
+import Spinner from "../Spinner";
 
 import "./app-style.css";
 
@@ -48,8 +49,8 @@ class App extends React.Component {
       <div className="container">
         <Header />
         {data ? (
-          <BrowserRouter>
-            <div className="jumbotron">
+          <BrowserRouter basename="fatsbase">
+            <div className="jumbotron page">
               <Switch>
                 <Route
                   exact
@@ -65,7 +66,7 @@ class App extends React.Component {
             </div>
           </BrowserRouter>
         ) : (
-          <div>Loading...</div>
+          <Spinner />
         )}
         <Footer />
       </div>
