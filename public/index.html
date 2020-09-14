@@ -20,5 +20,16 @@
 
   <body>
     <div id="root"></div>
+    <div id="widget"></div>
   </body>
+  </body>
+  <script src='https://c.online.vwfs.ru/widget'></script>
+  <script type="application/javascript">
+    window.addEventListener("load", function() {
+      window.WidgetOnlineRequest.init({
+        mount: {node: "#widget"}
+      })
+    })
+  </script>
+
 </html>
